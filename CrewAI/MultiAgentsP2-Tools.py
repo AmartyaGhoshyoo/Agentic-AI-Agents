@@ -1,18 +1,19 @@
 import os
 from crewai import Agent , Task ,Crew,LLM
-
+from rich.console import Console
+from rich.markdown import Markdown
 from crewai_tools import (CSVSearchTool,SerperDevTool)
 from dotenv import load_dotenv 
 load_dotenv()
-os.environ["GOOGLE_API_KEY"]=os.getenv("GEMINI_API_KEY")
+os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY")
 os.environ["SERPER_API_KEY"]=os.getenv("SERPER_API_KEY")
-gemini_llm=LLM(model="gemini/gemini-2.0-flash-exp",api_key=os.getenv("GEMINI_API_KEY")
-               )
-csv_search_tool=CSVSearchTool(csv="vaccination_info.csv",    config=dict(
+# gemini_llm=LLM(model="gemini/gemini-2.0-flash-exp",api_key="AIzaSyB-EERt7kQII8Eb8HMfR7N383LSx45FZZY")
+csv_search_tool=CSVSearchTool(csv=r"/Users/amartyaghosh/Library/Mobile Documents/com~apple~TextEdit/Documents/Projects ML/Heart Disease Prediction/Agentic AI/Agentic -AI- Agents/CrewAI/vaccination_info.csv",  
+    config=dict(
         llm=dict(
             provider="google", # or google, openai, anthropic, llama2, ...
             config=dict(
-                model="gemini-2.0-flash-exp",
+                model="gemini/gemini-2.0-flash-exp",
                 temperature=0.0,
                 stream=True,
             ),
@@ -41,11 +42,12 @@ researcher = Agent(
         "structured and unstructured data to generate accurate, evidence-backed responses."
     ),
     tools=[csv_search_tool, search_tool],
-    llm=gemini_llm,
+    # llm=gemini_llm,
     verbose=True,
     reasoning=True,
 )
-
+print("🧠 Model name:", researcher.llm.model)
+print("🧠 Provider config:", researcher.llm)
 writer = Agent(
     role="Pediatric Health Communicator",
     goal=(
@@ -58,9 +60,9 @@ writer = Agent(
         "Specializes in translating research and diagnoses into everyday language while "
         "preserving medical accuracy and tone."
     ),
-    llm=gemini_llm,
+    # llm=gemini_llm,
     reasoning=True,
-    verbose=True
+    verbose=True    
 )
 
 csv_search_task = Task(
@@ -83,6 +85,6 @@ crew=Crew(
     tasks=[csv_search_task,blog_task],
     verbose=True
 )
-result=crew.kickoff(inputs={'topic':"please suggest vaccine schedule for my 2 year old baby"})
-from IPython.display import Markdown
-print(result.raw)  # For console output
+# result=crew.kickoff(inputs={'topic':"please suggest vaccine schedule for my 2 year old baby"})
+# console=Console()
+# console.print(Markdown(result.raw))  # For console output
