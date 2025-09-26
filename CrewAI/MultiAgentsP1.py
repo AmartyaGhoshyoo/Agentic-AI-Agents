@@ -5,7 +5,6 @@ from crewai import LLM
 load_dotenv()
 llm = LLM(
     model="gemini/gemini-2.0-flash-exp",
-
     api_key=os.getenv("GOOGLE_API_KEY")
 )
 

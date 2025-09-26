@@ -1,4 +1,4 @@
-DEBUG Function: get_voices registered with elevenlabs_tools             
+"""DEBUG Function: get_voices registered with elevenlabs_tools             
 DEBUG Function: generate_sound_effect registered with elevenlabs_tools  
 DEBUG Function: text_to_speech registered with elevenlabs_tools         
 DEBUG Function: scrape_website registered with firecrawl_tools          
@@ -385,3 +385,4 @@ DEBUG ------------------------- OpenAI Response End -------------------------
 DEBUG Added RunResponse to Memory                                                          
 DEBUG ********* Agent Run End: 04124655-d50e-4457-b890-19df140dc9b6 *********              
 INFO Audio file saved to Audio_Generation/podcast_f7be3ffc-fe76-4a50-b558-2d7bbaebba1a.wav 
+"""

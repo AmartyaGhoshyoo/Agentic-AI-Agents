@@ -1,1 +1,6 @@
 *.env
+*__pycache__/
+*CrewAI/crewai_storage
+*Agno/AgAgents Leaning Notes/tmp*
+*CrewAI_Database
+Crewai_Mem0
